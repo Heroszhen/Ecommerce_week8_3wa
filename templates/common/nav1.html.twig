@@ -5,12 +5,12 @@
                 zhen-commerce
             </div>
             <div class="col-md-6">
-                <form>
+                <form method="post" action="">
                     <div>
                         <input type="text" class="form-control" id="search" name="search" placeholder="Qu'est qui vous ferais plaisir ?">
                     </div>
                     <div>
-                        <button type="submit" class="text-white"><i class="fas fa-search"></i></button>
+                        <button type="submit" class="text-white bg-dark"><i class="fas fa-search"></i></button>
                     </div>
                 </form>
             </div>
@@ -18,7 +18,7 @@
                 <a href="#">Mon Compte</a>
             </div>
             <div class="col-md-2">
-                <a href="{{ path('cartepage') }}" id="carte" class="h4" style="position:relative;top:10px;">
+                <a href="{{ path('cartepage') }}" id="carte" class="h4" style="position:relative;">
                     <i class="fas fa-cart-plus"></i> Panier
                     {% set n = 0 %}
                     {% for one in app.session.get('carte') %}
