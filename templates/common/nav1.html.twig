@@ -1,0 +1,73 @@
+<div id="nav1" class="fixed-top">
+    <div class="container-fluid mb-1">
+        <div class="row">
+            <div class="col-md-2 h4 text-center text-white">
+                zhen-commerce
+            </div>
+            <div class="col-md-6">
+                <form>
+                    <div>
+                        <input type="text" class="form-control" id="search" name="search" placeholder="Qu'est qui vous ferais plaisir ?">
+                    </div>
+                    <div>
+                        <button type="submit" class="text-white"><i class="fas fa-search"></i></button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-2 h5">
+                <a href="#">Mon Compte</a>
+            </div>
+            <div class="col-md-2">
+                <a href="{{ path('cartepage') }}" id="carte" class="h4" style="position:relative;top:10px;">
+                    <i class="fas fa-cart-plus"></i> Panier
+                    {% set n = 0 %}
+                    {% for one in app.session.get('carte') %}
+                        {% set n = n + 1 %}
+                    {% endfor %}
+                    <div id="total" class="text-danger font-weight-bold" style="position:relative;top:-35px;left:10px;">
+                        {% if n != 0 %}{{ n }}{% endif %}
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="navbar navbar-expand-md navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item {% if app.session.get("nav")=='home' %}active{% endif %}">
+                    <a class="nav-link" href="{{ path('homepage') }}">Mes Course</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Catégories
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        {% for one in allcategories.getAll %}
+                            <a class="dropdown-item" href="#" style="color:black !important">{{ one.name }}</a>
+                        {% endfor %}
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Electricité</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Forfait Mobile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Loisirs</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Santé</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</div>

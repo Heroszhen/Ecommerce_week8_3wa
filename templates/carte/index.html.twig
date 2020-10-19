@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div id="carte">
+    <div>
+        {% include 'common/nav1.html.twig' %}
+    </div>
+
+    <div class="undernav pb-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 mb-2">
+                    <h4>Détail de votre panier ({{ carte|length }}) articles</h4>
+                    {% for key, product in carte %}
+                        <div class="oneproduct mb-4">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <img>
+                                </div>
+                                <div class="col-md-9 mb-2">
+                                    <div class="font-weight-bold mb-2">
+                                        {{ product[1].name|capitalize }} - {{ product[1].origin|capitalize }}
+                                    </div>
+                                    <div class="mb-2">
+                                        {% if product[1].stock > 0 %}
+                                            <span class="text-success">En stock</span>
+                                        {% else %}
+                                            <span class="text-danger">Non disponible</span>
+                                        {% endif %}
+                                    </div>
+                                    <div class="mb-2 text-danger h4">
+                                        {{ product[1].price }} €
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <input type="number" class="form-control" value="{{product[0] }}">  
+                                        </div>
+                                        <div class="col-6 text-right">
+                                            <a class="btn btn-link text-secondary" href="{{ path('deleteproductfromcarte',{'pid':product[1].id}) }}">Supprimer</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="col-md-4 mb-2">
+                    <h4>Récapitualtif</h4>
+                    <div class="bg-white p-2">
+                        <div class="row">
+                            <div class="col-6">
+                            total : 
+                            </div>
+                            <div class="col-6 text-right text-danger h3 ">
+                                {% set n = 0 %}
+                                {% for key, product in carte %}
+                                    {% set n = product[1].price * product[0] + n %}
+                                {% endfor %}
+                                {{ n }} €
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        {% include 'common/footer.html.twig' %}
+    </div>
+</div>
+{% endblock %}

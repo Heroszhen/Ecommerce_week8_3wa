@@ -1,0 +1,144 @@
+img{
+    width:100%;
+    height:auto;
+}
+a{
+    color:white;
+}
+a:hover{
+    color:white;
+    text-decoration: none;
+}
+
+.undernav{
+    padding-top:140px;
+}
+
+.pointer{
+    cursor: pointer;
+}
+
+.delimitor{
+    background-color:#FF844B;
+    width:100%;
+    height:25px;
+}
+
+/*nav1.html.twig*/
+#nav1{
+    background-color:#293847;
+    padding-top:7px;
+}
+#nav1 .row>div{
+    display:flex;
+    align-items: center;
+}
+
+#nav1 form{
+    width:100%;
+    display:flex;
+    align-items: center;
+}
+#nav1 form>div:nth-child(1){
+    width:95%;
+    display:flex;
+    align-items: center;
+}
+#nav1 form>div:nth-child(2){
+    width:5%;
+}
+
+#nav1 .navbar{
+    background-color:#293847 !important;
+    color:white !important;
+    padding-bottom: 1px;
+}
+
+#nav1 .navbar a{
+    color:white !important;
+    text-align: center;
+}
+
+#nav1 .navbar .navbar-nav{
+    width:100%;
+    display:flex;
+    justify-content: center;
+} 
+#nav1 .navbar .navbar-nav>li{
+    width:14%;
+} 
+
+#nav1 .navbar .navbar-nav>li.active{
+    background:white;
+    color:black;
+} 
+#nav1 .navbar .navbar-nav>li.active a{
+    color:black !important;
+} 
+
+
+/*footer.html.twig*/
+#footer{
+    color:white;
+}
+#footer .partI{
+    background-color:#334859;
+    padding:10px;
+    display:flex;
+    justify-content: center;
+}
+#footer .partI>div:nth-child(1){
+    display:flex;
+    align-items: center;
+}
+#footer .partI img{
+    width:40px;
+    height:40px;
+}
+
+#footer .partII{
+    background-color:#323232;
+    padding:10px;
+}
+
+/*home*/
+/*index.html.twig*/
+#home a.oneproduct{
+    display:block;
+    width: 95%;
+    padding:15px;
+    cursor: pointer;
+    margin:0 auto;
+}
+
+
+#home a.oneproduct:hover{
+    box-shadow: 0px 0px 11px 0px rgba(0,0,0,0.75);
+}
+
+#home a.oneproduct .image{
+    width: 150px;
+    height:250px;
+    overflow: hidden;
+    margin:0 auto;
+}
+
+
+/*carte*/
+/*index.html.twig*/
+#carte .undernav{
+    min-height:calc(100vh - 200px);
+    background-color:#efefef !important;
+}
+
+#carte .oneproduct{
+    padding:10px;
+    background:white;
+}
+
+@media(max-width:768px){
+    .undernav{
+        padding-top:250px;
+    }
+}
+

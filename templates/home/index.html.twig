@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div id="home">
+    <div>
+        {% include 'common/nav1.html.twig' %}
+    </div>
+    <div class="container undernav"> 
+        <div class="row">
+            {% for product in allproducts %}
+                <div class="col-md-6 col-lg-3 mb-2">
+                    <a class="oneproduct" href="{{ path('oneproductpage',{'id':product.id}) }}" style="color:black !important">
+                        <div class="image">
+                            <img src="{{ asset('photo/640px-Alexandra_Daddario_2016.jpg') }}"  alt="...">
+                        </div>
+                        <div class="text-center font-weight-bold">
+                            {{ product.name |capitalize }}
+                        </div>
+                        <div class="text-center">
+                            {{ product.description|slice(0 ,30) }} ....
+                        </div>
+                        <div class="text-danger text-center mt-3 h2">
+                            {{ product.price }} €
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="delimitor"></div>
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+            <img src="{{ asset('photo/adc3.jpg') }}" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+            <img src="{{ asset('photo/adc1.jpg') }}"  class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+            <img src="{{ asset('photo/adc2.jpg') }}"  class="d-block w-100" alt="...">
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+    <div class="delimitor"></div>
+    <div class="p-5">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sit amet libero fringilla, suscipit ipsum quis, iaculis elit. Etiam non tortor non nunc consectetur rutrum et a diam. Donec ultricies, est vel scelerisque venenatis, elit ipsum convallis dolor, nec vehicula magna massa ac massa. Suspendisse vitae magna risus. Ut id dapibus metus. Sed id dignissim mauris. Cras ac diam ex.<br><br>
+
+        Ut volutpat sit amet tellus et imperdiet. Sed pretium tristique ex, quis pulvinar nisl pharetra pharetra. Nam semper ante dolor, sed scelerisque sem rutrum sed. Sed ut leo eu justo dignissim convallis. Donec sit amet ante porttitor, cursus lacus id, vestibulum nulla. Mauris mattis diam sed porttitor varius. Vivamus fringilla ante eu sollicitudin rutrum. Maecenas bibendum placerat auctor. Donec velit sem, ultricies sed orci non, eleifend dapibus ligula. Duis suscipit tincidunt lectus id porta. Pellentesque maximus mi felis, suscipit rhoncus lorem sodales at. Sed tristique rhoncus bibendum. Ut vitae tortor eget lorem eleifend tristique. Quisque sit amet sem ipsum. Donec luctus lacus at risus feugiat, in tristique nunc faucibus. Suspendisse potenti.<br><br>
+
+        Proin at neque vitae dui condimentum dapibus ut eget est. Pellentesque vehicula ultricies est, id volutpat lorem vehicula vitae. Praesent fermentum tempor magna tristique efficitur. In lobortis massa ac purus viverra, vitae lobortis risus tempus. Suspendisse ullamcorper ex id tellus elementum, quis venenatis tortor vestibulum. Nulla iaculis nec quam non hendrerit. Vivamus viverra ullamcorper ornare. Proin gravida ante sit amet arcu molestie, lobortis interdum purus dapibus.
+    </div>
+    <div>
+        {% include 'common/footer.html.twig' %}
+    </div>
+</div>
+{% endblock %}
