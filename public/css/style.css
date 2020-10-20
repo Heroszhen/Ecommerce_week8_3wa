@@ -43,6 +43,26 @@ iframe{
     align-items: center;
 }
 
+#bigimg{
+    position: absolute;
+    z-index: 9999;
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100vh;
+    background-color: rgba(0,0,0,0.75);
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    padding:10px;
+    overflow: hidden;
+}
+#bigimg img{
+    height:99%;
+    width:auto;
+}
+
 /*nav1.html.twig*/
 #nav1{
     background-color:#293847;
@@ -286,6 +306,11 @@ iframe{
 
     #register .undernav #registerform{
         width:75%;
+    }
+
+    #bigimg img{
+        width:95%;
+        height:auto;
     }
 }
 

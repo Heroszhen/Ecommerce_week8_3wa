@@ -32,9 +32,11 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
         
         $category1 = new Category();
         $category1->setName("fruit");
+        $category1->setPhoto("10083754155f8ded5d910e67.23748912.jpg");
         $manager->persist($category1);
         $category2 = new Category();
         $category2->setName("vêtement");
+        $category2->setPhoto("10083754155f8ded5d910e67.23748912.jpg");
         $manager->persist($category2);
         $manager->flush();
 

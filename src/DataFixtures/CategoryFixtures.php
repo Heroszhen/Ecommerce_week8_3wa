@@ -20,6 +20,7 @@ class CategoryFixtures extends Fixture
          foreach($categories as $one){
             $category = new Category();
             $category->setName($one);
+            $category->setPhoto("10083754155f8ded5d910e67.23748912.jpg");
             $manager->persist($category);
          }
 

@@ -1,16 +1,16 @@
+$( document ).ready(function() {
+    $('img.loupe').loupe({
+        width: "60%", // width of magnifier
+        height: 400, // height of magnifier
+        loupe: 'loupe' // css class for magnifier
+      });
+});
 
 
-//home
-//oneproduct.html.twig
-$("#oneproduct button.addproductincarte").click(function(e){
-    let productid = $(this).attr("data-id");
-    $.get(
-        "/panier/addoneproduct/"+productid,
-        function (response) {
-            $("#nav1 #carte #total").html(response);
-        }
-    );
-
+//base.html.twig
+$("#bigimg").click(function(e){
+    $("#bigimg").addClass("d-none");
+    $("#bigimg img").attr("src","");
 });
 
 
@@ -34,6 +34,25 @@ $("#carte input.modifyquantity").change(function(e){
 
 });
 
+
+//home
+//oneproduct.html.twig
+$("#oneproduct button.addproductincarte").click(function(e){
+    let productid = $(this).attr("data-id");
+    $.get(
+        "/panier/addoneproduct/"+productid,
+        function (response) {
+            $("#nav1 #carte #total").html(response);
+        }
+    );
+
+});
+
+$("#oneproduct img.showbigimg").click(function(e){
+    let url = $(this).attr("src");
+    $("#bigimg img").attr("src",url);
+    $("#bigimg").removeClass("d-none");
+});
 
 
 
