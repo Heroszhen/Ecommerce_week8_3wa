@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div id="adminallusers" class="espacep">
+    <div class="espacenav d-none">
+        {% include 'common/espacenav.html.twig' %}
+    </div>
+    <div class="espacenav2">
+        {% include 'common/espacenav2.html.twig' %}
+    </div>
+    <div class="espacecontent">
+        <h2 class="text-center mb-3">Tous les utilisateurs</h2>
+        <div class="bloc">
+            <div class="text-right mb-2">
+                <a href="{{ path('adminadduser') }}" class="btn btn-outline-primary btn-sm">Ajouter</a>
+            </div>
+            <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Rôles</th>
+                <th scope="col">Création</th>
+                <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for user in allusers %}
+                <tr>
+                <td>{{ user.id }}</td>
+                <td>
+                    {{ user.firstname }} {{ user.lastname }}
+                </td>
+                <td>
+                    {% for role in user.roles %}
+                    {{ role }} ,
+                    {% endfor %}
+                </td>
+                <td>
+                    {{ user.created|date("m/d/Y") }}
+                </td>
+                <td>
+                    <a class="btn btn-outline-info btn-sm mr-1" href="{{ path('adminmodifyuser',{'id':user.id}) }}">Modifier</a>
+                    <button type="button" class="btn btn-danger btn-sm" href="">Supprimer</button>
+                </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

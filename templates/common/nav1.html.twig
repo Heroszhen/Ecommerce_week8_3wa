@@ -2,23 +2,36 @@
     <div class="container-fluid mb-1">
         <div class="row">
             <div class="col-md-2 h4 text-center text-white">
-                zhen-commerce
+                zhen-ecommerce
             </div>
             <div class="col-md-6">
                 <form method="post" action="">
                     <div>
-                        <input type="text" class="form-control" id="search" name="search" placeholder="Qu'est qui vous ferais plaisir ?">
+                        <input type="text" class="form-control" id="search" name="search" placeholder="Qu'est qui vous ferait plaisir ?">
                     </div>
                     <div>
                         <button type="submit" class="text-white bg-dark"><i class="fas fa-search"></i></button>
                     </div>
                 </form>
             </div>
-            <div class="col-md-2 h5">
-                <a href="#">Mon Compte</a>
+            <div class="col-6 col-md-2 h5">
+                <li class="nav-item dropdown {% if app.session.get("nav")=='register' %}active{% endif %}" style="position:relative;top:-5px;">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Mon compte
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        {% if app.user is null %}
+                        <a class="dropdown-item" href="{{ path('connexionpage') }}">Connexion</a>
+                        <a class="dropdown-item" href="{{ path('registerpage') }}">Inscription</a>
+                        {% else %}
+                            <a class="dropdown-item" href="{{ path('profilepage',{'id':app.user.id}) }}">Espace Personnel</a>
+                            <a class="dropdown-item" href="/logout">Déconnexion</a>
+                        {% endif %}
+                    </div>
+                </li>
             </div>
-            <div class="col-md-2">
-                <a href="{{ path('cartepage') }}" id="carte" class="h4" style="position:relative;">
+            <div class="col-6 col-md-2">
+                <a href="{{ path('cartepage') }}" id="carte" class="h4" style="position:relative;top:15px;">
                     <i class="fas fa-cart-plus"></i> Panier
                     {% set n = 0 %}
                     {% for one in app.session.get('carte') %}

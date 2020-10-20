@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div id="adminallproducts" class="espacep">
+    <div class="espacenav d-none">
+        {% include 'common/espacenav.html.twig' %}
+    </div>
+    <div class="espacenav2">
+        {% include 'common/espacenav2.html.twig' %}
+    </div>
+    <div class="espacecontent">
+        <h2 class="text-center mb-3">Tous les produits</h2>
+        <div class="bloc">
+            <div class="text-right mb-2">
+                <a href="{{ path('adminaddproduct') }}" class="btn btn-outline-primary btn-sm">Ajouter</a>
+            </div>
+            <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Catégorie</th>
+                <th scope="col">Création</th>
+                <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for product in allproducts %}
+                <tr>
+                <td>{{ product.id }}</td>
+                <td>
+                    {{ product.name }}
+                </td>
+                <td>
+                    {{ product.category.name }}
+                </td>
+                <td>
+                    {{ product.created|date("m/d/Y") }}
+                </td>
+                <td>
+                    <a class="btn btn-outline-info btn-sm mr-1" href="{{ path('adminmodifyproduct',{'id':product.id}) }}">Modifier</a>
+                    <button type="button" class="btn btn-danger btn-sm" href="">Supprimer</button>
+                </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+            </table>
+        </div>
+        <div class="navigation mt-2">
+            {{ knp_pagination_render(allproducts) }}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -10,7 +10,9 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-3 d-none d-md-block">
-               
+                    <div>
+                        
+                    </div>
                 </div>
                 <div class="col-md-9">
                     <div>
@@ -32,16 +34,22 @@
                             <button type="button" class="btn btn-success btn-sm addproductincarte" data-id="{{ product.id }}">Ajouter</button>
                     </div>
                     <hr>
-                    <div>
+                    <div class="mb-3">
                         <div class="row">
                             <div class="col-md-3 mb-1">
+                                <img src="{{ asset('photo/product/' ~ product.photos[0].name) }}"  alt="...">
                             </div>
                             <div class="col-md-9">
                                 {{ product.description }}
                             </div>
                         </div>
                     </div>
-                    <div>
+                    <div class="zcarousel">
+                        {% for one in product.photos %}
+                            <div>
+                                <img src="{{ asset('photo/product/' ~ one.name) }}"  alt="...">
+                            </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>

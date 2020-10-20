@@ -82,4 +82,42 @@ class CarteController extends AbstractController
         $session->set("carte",$carte);
         return $this->redirectToRoute('cartepage');
     }
+
+    /**
+     * @Route("/updatequantity/{pid}_{value}")
+     */
+    public function updateQuantity(int $pid,int $value , Request $request)
+    {
+        if ($request->isXmlHttpRequest()){
+            $em = $this->getDoctrine()->getManager();
+            $n = 0;
+            $session = $request->getSession();
+            $carte = $session->get("carte",[]);
+            foreach($carte as $id=>$total){
+                if($id == $pid){
+                    $carte[$id] = $value;
+                }
+                $product = $em->find(Product::class,$id);
+                $n += $product->getPrice() * $carte[$id];
+            }
+            $session->set("carte",$carte);
+            return new Response($n);
+        }
+
+        return new Response("Error");
+        
+    }
+
+    /**
+     * @Route("/emptycart" , name="emptycart")
+     */
+    public function emptyCart(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $session = $request->getSession();
+        $session->set("nav","");
+        $session->set("carte",[]);
+        return $this->redirectToRoute('cartepage');
+    }
+
 }

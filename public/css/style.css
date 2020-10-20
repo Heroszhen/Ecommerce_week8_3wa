@@ -12,6 +12,7 @@ a:hover{
 
 .undernav{
     padding-top:140px;
+    min-height:calc(100vh - 100px);
 }
 
 .pointer{
@@ -22,6 +23,24 @@ a:hover{
     background-color:#FF844B;
     width:100%;
     height:25px;
+}
+
+iframe{
+    width:100%;
+}
+
+#loader{
+    position: absolute;
+    z-index: 9999999;
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100vh;
+    background-color: rgba(255,255,255,0.75);
+    display:flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /*nav1.html.twig*/
@@ -76,6 +95,14 @@ a:hover{
     color:black !important;
 } 
 
+#nav1 .navbar .navbar-nav>li:hover{
+    background:white;
+    color:black;
+} 
+#nav1 .navbar .navbar-nav>li:hover a{
+    color:black !important;
+} 
+
 
 /*footer.html.twig*/
 #footer{
@@ -123,6 +150,18 @@ a:hover{
     margin:0 auto;
 }
 
+/*oneproduct.html.twig*/
+#oneproduct .zcarousel {
+    width:100%;
+    overflow-x:scroll;
+    display:flex;
+    flex-wrap: nowrap;
+}
+#oneproduct .zcarousel img{
+    width:140px;
+    height:auto;
+    margin-right:10px;
+}
 
 /*carte*/
 /*index.html.twig*/
@@ -136,9 +175,117 @@ a:hover{
     background:white;
 }
 
+
+
+/*connection*/
+/*index.html.twig*/
+#register .undernav{
+    background:linear-gradient(-135deg, #c850c0, #4158d0);
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#register .undernav #registerform{
+    width:50%;
+    padding:25px;
+    background:white;
+    border-radius: 10px;
+    margin-top:50px;
+    margin-bottom:50px;
+}
+
+
+
+
+/*espace personnel*/
+.espacep .espacenav{
+    position: absolute;
+    z-index: 100;
+    position: fixed;
+    top:0;
+    left:0;
+}
+.espacep .espacenav2{
+    position: absolute;
+    z-index: 50;
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15)!important;
+}
+.espacep .espacecontent{
+    margin-top:68px;
+    padding:20px;
+    background-color:#f8f9fc;
+    min-height:calc(100vh - 70px);
+}
+
+.espacep .bloc{
+    padding:15px;
+    border-radius:10px;
+    background:white;
+    box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15)!important;
+}
+
+#espacemainnav{
+    width:250px;
+    height:100vh;
+    padding:10px;
+    background-color:#4e73df;
+    color:white;
+}
+#espacemainnav a{
+    color:white;
+    width:100%;
+    display:block;
+}
+
+#espacemainnav .onemenu{
+    margin-bottom:10px;
+    padding:5px;
+}
+#espacemainnav .onemenu:hover{
+    background:white;
+    border-radius: 5px;
+}
+#espacemainnav .onemenu:hover a{
+    color:#4e73df;
+}
+#espacemainnav div.active{
+    background:white;
+    border-radius: 5px;
+}
+#espacemainnav div.active a{
+    color:#4e73df;
+}
+
+#espacemainnav2{
+    display:flex;
+    background-color: white;
+}
+#espacemainnav2>div{
+    width:50%;
+    padding-left:10px;
+    padding-right:10px;
+    display:flex;
+    height:70px;
+    align-items: center;
+}
+#espacemainnav2>div:nth-child(2){
+    justify-content: flex-end;
+}
+
+
+
 @media(max-width:768px){
     .undernav{
         padding-top:250px;
+    }
+
+    #register .undernav #registerform{
+        width:75%;
     }
 }
 

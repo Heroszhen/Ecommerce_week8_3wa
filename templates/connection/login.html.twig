@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div id="login">
+    <div>
+        {% include 'common/nav1.html.twig' %}
+    </div>
+
+    <div class="undernav pb-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 d-none d-md-block">
+                    <img src="{{ asset('photo/640px-Alexandra_Daddario_2016.jpg') }}"  alt="...">
+                </div>
+                <div class="col-md-6" style="display:flex;align-items:center">
+                    <form method="post" style="width:100%;">
+                        <h2 class="text-center mb-3">Connectez-vous</h2>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="text" name="_username" class="form-control" value="{{ last_username }}">
+                        </div>
+                        <div class="form-group">
+                            <label>Mot de passe</label>
+                            <input type="password" name="_password" class="form-control">
+                        </div>
+                        <div class="">
+                            <button type="submit" class="btn btn-primary">
+                                se connecter
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        {% include 'common/footer.html.twig' %}
+    </div>
+</div>
+
+{% endblock %}

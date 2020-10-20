@@ -17,6 +17,9 @@
     </head>
     <body>
         {% block body %}{% endblock %}
+        <div id="loader" class="d-none">
+            <img src="{{ asset('photo/loading.gif') }}"  alt="...">
+        </div>
         {% block javascripts %}
             <!-- Optional JavaScript -->
             <!-- jQuery first, then Popper.js, then Bootstrap JS -->

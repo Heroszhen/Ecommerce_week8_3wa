@@ -1,7 +1,7 @@
 composer require --dev symfony/web-server-bundle
 composer require --dev doctrine/doctrine-fixtures-bundle
 composer require --dev fzaninotto/faker
-
+composer require knplabs/knp-paginator-bundle
 
 commandes:
 php bin/console doctrine:database:create

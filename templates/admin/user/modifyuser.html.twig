@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<style>
+    #adminmodifyuser .bloc{
+        width:50%;
+        margin:0 auto;
+    }
+    @media(max-width:768px){
+        #adminmodifyuser .bloc{
+            width:95%;
+        }
+    }
+</style>
+<div id="adminmodifyuser" class="espacep">
+    <div class="espacenav d-none">
+        {% include 'common/espacenav.html.twig' %}
+    </div>
+    <div class="espacenav2">
+        {% include 'common/espacenav2.html.twig' %}
+    </div>
+    <div class="espacecontent">
+        <h2 class="text-center mb-3">
+        {% if user.id != null %}
+            Editer "{{ user.firstname }} {{ user.lastname }}"
+        {% else %}
+            Ajouter un utilisateur
+        {% endif %}
+        </h2>
+        <div class="bloc">
+                {% for message in app.flashes('danger') %}
+                <div class="alert alert-danger">
+                    {{ message }}
+                </div>
+                {% endfor %}
+                {% for message in app.flashes('success') %}
+                    <div class="alert alert-success">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+                {{ form_start(form) }}
+                {{ form_rest(form) }}
+                <button type="submit" class="btn btn-primary btn-block">Envoyer</button>
+                {{ form_end(form) }}
+        </div>
+    </div>
+</div>
+{% endblock %}

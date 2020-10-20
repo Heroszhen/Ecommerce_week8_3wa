@@ -59,6 +59,11 @@ class Product
      */
     private $photos;
 
+    /**
+     * type="array", nullable=true)
+     */
+    private $files = [];
+
     public function __construct()
     {
         $this->photos = new ArrayCollection();
@@ -180,6 +185,18 @@ class Product
                 $photo->setProduct(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getFiles(): ?array
+    {
+        return $this->files;
+    }
+
+    public function setFiles(?array $files): self
+    {
+        $this->files = $files;
 
         return $this;
     }

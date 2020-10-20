@@ -33,7 +33,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-6">
-                                            <input type="number" class="form-control" value="{{product[0] }}">  
+                                            <input type="number" class="form-control modifyquantity" data-id="{{product[1].id}}" value="{{product[0] }}">  
                                         </div>
                                         <div class="col-6 text-right">
                                             <a class="btn btn-link text-secondary" href="{{ path('deleteproductfromcarte',{'pid':product[1].id}) }}">Supprimer</a>
@@ -51,12 +51,15 @@
                             <div class="col-6">
                             total : 
                             </div>
-                            <div class="col-6 text-right text-danger h3 ">
+                            <div class="col-6 text-right text-danger h3" id="total2">
                                 {% set n = 0 %}
                                 {% for key, product in carte %}
                                     {% set n = product[1].price * product[0] + n %}
                                 {% endfor %}
                                 {{ n }} €
+                            </div>
+                            <div class="col-12 text-center mt-4">
+                                <a href="{{ path('emptycart') }}" class="btn btn-outline-danger btn-block btn-sm">Vider mon panier</a>
                             </div>
                         </div>
                     </div>

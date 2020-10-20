@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<style>
+    #adminmodifyproduct .bloc1{
+        width:50%;
+        margin:0 auto;
+    }
+    @media(max-width:768px){
+        #adminmodifyproduct .bloc1{
+            width:95%;
+        }
+    }
+</style>
+<div id="adminmodifyproduct" class="espacep">
+    <div class="espacenav d-none">
+        {% include 'common/espacenav.html.twig' %}
+    </div>
+    <div class="espacenav2">
+        {% include 'common/espacenav2.html.twig' %}
+    </div>
+    <div class="espacecontent">
+        <h2 class="text-center mb-3">
+        {% if product.id != null %}
+            Editer "{{product.name}}"
+        {% else %}
+            Ajouter un article
+        {% endif %}
+        </h2>
+        <div class="bloc bloc1">
+                {% for message in app.flashes('danger') %}
+                <div class="alert alert-danger">
+                    {{ message }}
+                </div>
+                {% endfor %}
+                {% for message in app.flashes('success') %}
+                    <div class="alert alert-success">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+                {{ form_start(form) }}
+                {{ form_rest(form) }}
+                <button type="submit" class="btn btn-primary btn-block">Envoyer</button>
+                {{ form_end(form) }}
+        </div>
+
+        <div class="bloc bloc3 mt-2">
+            <div class="row">
+            </div>
+        </div>
+
+        <div class="bloc bloc2 mt-2">
+            <div class="row">
+                {% for photo in product.photos %}
+                <div class="col-6 col-md-3 col-lg-2">
+                    <div style="position:relative;top:10px">
+                        <i class="far fa-times-circle text-danger pointer deleteonephoto" data-id="{{ photo.id }}"></i>
+                    </div>
+                    <img src="{{ asset('photo/product/' ~ photo.name) }}"  alt="...">
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

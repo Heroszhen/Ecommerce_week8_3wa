@@ -1,0 +1,17 @@
+<div id="espacemainnav2">
+    <div class="text-secondary">
+        <i class="fas fa-align-justify pointer openespacemainnav"></i>
+    </div>
+    <div class="text-right">
+        <div class="dropdown">
+            <a class="btn btn-secondary btn-sm dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Bonjour , {{ app.user.firstname }} {{ app.user.lastname }}
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="/">Accueil</a>
+                <a class="dropdown-item" href="/logout">Déconnexion</a>
+            </div>
+        </div>
+    </div>
+</div>
