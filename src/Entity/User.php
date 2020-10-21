@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -48,6 +50,16 @@ class User implements UserInterface
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $created;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Carte::class, mappedBy="user")
+     */
+    private $cartes;
+
+    public function __construct()
+    {
+        $this->cartes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -159,6 +171,37 @@ class User implements UserInterface
     public function setCreated(?\DateTimeInterface $created): self
     {
         $this->created = $created;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Carte[]
+     */
+    public function getCartes(): Collection
+    {
+        return $this->cartes;
+    }
+
+    public function addCarte(Carte $carte): self
+    {
+        if (!$this->cartes->contains($carte)) {
+            $this->cartes[] = $carte;
+            $carte->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCarte(Carte $carte): self
+    {
+        if ($this->cartes->contains($carte)) {
+            $this->cartes->removeElement($carte);
+            // set the owning side to null (unless already changed)
+            if ($carte->getUser() === $this) {
+                $carte->setUser(null);
+            }
+        }
 
         return $this;
     }

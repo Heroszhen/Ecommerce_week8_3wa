@@ -67,9 +67,11 @@ $("#espacemainnav .closeespacemainnav").click(function(e){
 
 
 //modifyproduct.html.twig
+let files = [];
 $("#adminmodifyproduct input.thefile").change(function(e){
     if (e.target.files && e.target.files[0]) {
         for(let i = 0; i < e.target.files.length; i++) {
+            files.push(e.target.files[i]);
             //lire le contenu de fichiers de façon asynchrone
             var reader = new FileReader();
             reader.onload = function (e) {

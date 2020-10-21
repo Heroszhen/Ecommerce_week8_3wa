@@ -64,9 +64,15 @@ class Product
      */
     private $files = [];
 
+    /**
+     * @ORM\OneToMany(targetEntity=Carte::class, mappedBy="product", cascade={"persist", "remove"})
+     */
+    private $cartes;
+
     public function __construct()
     {
         $this->photos = new ArrayCollection();
+        $this->cartes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -197,6 +203,37 @@ class Product
     public function setFiles(?array $files): self
     {
         $this->files = $files;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Carte[]
+     */
+    public function getCartes(): Collection
+    {
+        return $this->cartes;
+    }
+
+    public function addCarte(Carte $carte): self
+    {
+        if (!$this->cartes->contains($carte)) {
+            $this->cartes[] = $carte;
+            $carte->setProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCarte(Carte $carte): self
+    {
+        if ($this->cartes->contains($carte)) {
+            $this->cartes->removeElement($carte);
+            // set the owning side to null (unless already changed)
+            if ($carte->getProduct() === $this) {
+                $carte->setProduct(null);
+            }
+        }
 
         return $this;
     }
