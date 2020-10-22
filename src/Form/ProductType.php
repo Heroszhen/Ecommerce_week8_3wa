@@ -70,6 +70,7 @@ class ProductType extends AbstractType
                 'choice_label' => 'name',
             ])
             ->add('files',FileType::class,[
+                "label" => "photo",
                 "multiple" => true,
                 "mapped" => false,
                 'label'=>" ",

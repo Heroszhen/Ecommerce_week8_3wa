@@ -4,6 +4,8 @@ $( document ).ready(function() {
         height: 400, // height of magnifier
         loupe: 'loupe' // css class for magnifier
       });
+
+      $('#adminallusers table').DataTable();
 });
 
 
@@ -45,8 +47,22 @@ $("#oneproduct button.addproductincarte").click(function(e){
             $("#nav1 #carte #total").html(response);
         }
     );
-
 });
+
+$("#oneproduct form[name='comment']").submit(function(e){
+    e.preventDefault();
+    var formSerialize = $(this).serialize();
+    var productid = $("#oneproduct .productid").attr("data-id");
+    $.post(
+            "/addcommenttoproduct/"+productid,
+            formSerialize,
+            function (response) {
+                $("#oneproduct textarea#comment_message").val("");
+                $("#oneproduct #allcomments").prepend(response);
+            }
+    );
+});
+
 
 $("#oneproduct img.showbigimg").click(function(e){
     let url = $(this).attr("src");
@@ -54,10 +70,18 @@ $("#oneproduct img.showbigimg").click(function(e){
     $("#bigimg").removeClass("d-none");
 });
 
+//user
+//mycommands.html.twig
+$("#commands .allmycommands .onecommand .title").click(function(e){
+    let check = $(this).next().hasClass("d-none");
+    $("#commands .allmycommands .onecommand .content").addClass("d-none");
+    if(check)$(this).next().removeClass("d-none");
+    else $(this).next().addClass("d-none");
+});
 
 
 
-//espace personnel
+//espace personnel - admin
 $("#espacemainnav2 .openespacemainnav").click(function(e){
     $(".espacep .espacenav").removeClass("d-none");
 });
@@ -65,13 +89,24 @@ $("#espacemainnav .closeespacemainnav").click(function(e){
     $(".espacep .espacenav").addClass("d-none");
 });
 
+//allcommands.html.twig
+$("#adminallcommands button.showonecommand").click(function(e){
+    let commandid = $(this).attr("data-id");
+    $.get(
+        "/admin/user/showonecommand/"+commandid,
+        function (response) {
+            $('#adminallcommands .modal .modal-body').html(response);
+            $('#adminallcommands .modal').modal('show')
+        }
+    );
+});
+
 
 //modifyproduct.html.twig
-let files = [];
+let allfiles = [];
 $("#adminmodifyproduct input.thefile").change(function(e){
     if (e.target.files && e.target.files[0]) {
         for(let i = 0; i < e.target.files.length; i++) {
-            files.push(e.target.files[i]);
             //lire le contenu de fichiers de façon asynchrone
             var reader = new FileReader();
             reader.onload = function (e) {
@@ -94,6 +129,15 @@ $("#adminmodifyproduct .deleteonephoto").click(function(e){
         "/admin/product/deleteonephoto/"+photoid,
         function (response) {
             if(response == 1)parent.remove();
+        }
+    );
+});
+
+$(".testemail").click(function(e){
+    $.get(
+        "/admin/user/testemail",
+        function (response) {
+            if(response == 1)alert("Your email is sent");
         }
     );
 });

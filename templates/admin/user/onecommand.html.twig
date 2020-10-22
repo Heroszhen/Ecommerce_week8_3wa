@@ -1,0 +1,21 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-4">
+            <img src="{{ asset('photo/product/' ~ command.product.photos[0].name) }}"  alt="...">
+        </div>
+        <div class="col-8">
+            <h5 class="mb-2">{{ command.product.name }}</h5>
+            <div class="mb-2 text-info">{{ command.product.category.name }}</div>
+            <div class="mb-2 text-secondary" style="font-size:10px">{{ command.product.description}}</div>
+            <div class="mb-2">Prix : {{ command.price }} €</div>
+            <div class="mb-2">Quantity : {{ command.quantity }}</div>
+            <div class="mb-2">
+                total : 
+                <span class="h4 text-danger">{{ command.quantity * command.price }} €</span>
+            </div>
+            <div class="mb-2">
+            {{ command.created|date("d/m/Y") }}
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<div id="commands" class="espacep">
+    <div class="espacenav d-none">
+        {% include 'common/espacenav.html.twig' %}
+    </div>
+    <div class="espacenav2">
+        {% include 'common/espacenav2.html.twig' %}
+    </div>
+    <div class="espacecontent">
+        <h2 class="text-center mb-3">Mes Commentaires</h2>
+        <div class="bloc">
+            <table class="table table-hover table-dark">
+            <thead>
+                <tr>
+                <th scope="col">Produit</th>
+                <th scope="col">Commentaire</th>
+                <th scope="col">Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for one in comments %}
+                <tr>
+                <td>
+                    <a href="{{ path('oneproductpage',{'id':one.product.id}) }}" class="btn btn-outline-primary">{{ one.product.name|capitalize }}</a>
+                </td>
+                <td>{{ one.message }}</td>
+                <td>{{ one.created|date('d/m/Y') }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            </table>
+        </div>
+    </div>   
+</div>
+{% endblock %}

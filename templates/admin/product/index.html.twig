@@ -21,7 +21,7 @@
                 <th scope="col">Name</th>
                 <th scope="col">Catégorie</th>
                 <th scope="col">Création</th>
-                <th scope="col">Action</th>
+                <th scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -39,7 +39,7 @@
                 </td>
                 <td>
                     <a class="btn btn-outline-info btn-sm mr-1" href="{{ path('adminmodifyproduct',{'id':product.id}) }}">Modifier</a>
-                    <button type="button" class="btn btn-danger btn-sm" href="">Supprimer</button>
+                    <a type="button" class="btn btn-danger btn-sm" href="{{ path('admindeleteproduct',{'id':product.id}) }}">Supprimer</a>
                 </td>
                 </tr>
             {% endfor %}

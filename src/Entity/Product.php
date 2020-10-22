@@ -69,10 +69,28 @@ class Product
      */
     private $cartes;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="product")
+     */
+    private $yes;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="product")
+     */
+    private $comments;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Command::class, mappedBy="product")
+     */
+    private $commands;
+
     public function __construct()
     {
         $this->photos = new ArrayCollection();
         $this->cartes = new ArrayCollection();
+        $this->yes = new ArrayCollection();
+        $this->comments = new ArrayCollection();
+        $this->commands = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -232,6 +250,99 @@ class Product
             // set the owning side to null (unless already changed)
             if ($carte->getProduct() === $this) {
                 $carte->setProduct(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Comment[]
+     */
+    public function getYes(): Collection
+    {
+        return $this->yes;
+    }
+
+    public function addYe(Comment $ye): self
+    {
+        if (!$this->yes->contains($ye)) {
+            $this->yes[] = $ye;
+            $ye->setProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeYe(Comment $ye): self
+    {
+        if ($this->yes->contains($ye)) {
+            $this->yes->removeElement($ye);
+            // set the owning side to null (unless already changed)
+            if ($ye->getProduct() === $this) {
+                $ye->setProduct(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Comment[]
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comment $comment): self
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments[] = $comment;
+            $comment->setProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comment $comment): self
+    {
+        if ($this->comments->contains($comment)) {
+            $this->comments->removeElement($comment);
+            // set the owning side to null (unless already changed)
+            if ($comment->getProduct() === $this) {
+                $comment->setProduct(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Command[]
+     */
+    public function getCommands(): Collection
+    {
+        return $this->commands;
+    }
+
+    public function addCommand(Command $command): self
+    {
+        if (!$this->commands->contains($command)) {
+            $this->commands[] = $command;
+            $command->setProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommand(Command $command): self
+    {
+        if ($this->commands->contains($command)) {
+            $this->commands->removeElement($command);
+            // set the owning side to null (unless already changed)
+            if ($command->getProduct() === $this) {
+                $command->setProduct(null);
             }
         }
 

@@ -15,7 +15,7 @@
                         <div class="oneproduct mb-4">
                             <div class="row">
                                 <div class="col-md-3">
-                                    <img>
+                                    <img src="{{ asset('photo/product/' ~ product[1].photos[0].name) }}"  alt="...">
                                 </div>
                                 <div class="col-md-9 mb-2">
                                     <div class="font-weight-bold mb-2">
@@ -60,6 +60,10 @@
                             </div>
                             <div class="col-12 text-center mt-4">
                                 <a href="{{ path('emptycart') }}" class="btn btn-outline-danger btn-block btn-sm">Vider mon panier</a>
+                                {% if app.user is not null %}
+                                <br><br>
+                                <a href="{{ path('commandpage') }}" class="btn btn-outline-primary btn-block">Payer</a>
+                                {% endif %}
                             </div>
                         </div>
                     </div>

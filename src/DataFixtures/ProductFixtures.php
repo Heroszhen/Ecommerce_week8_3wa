@@ -38,6 +38,10 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
         $category2->setName("vêtement");
         $category2->setPhoto("10083754155f8ded5d910e67.23748912.jpg");
         $manager->persist($category2);
+        $category3 = new Category();
+        $category3->setName("jeu");
+        $category3->setPhoto("10083754155f8ded5d910e67.23748912.jpg");
+        $manager->persist($category3);
         $manager->flush();
 
         $photos = glob($this->params->get('upload_dir').'product/*'); // get all file names
@@ -50,7 +54,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
             $pd = new Product();
             $pd->setName($one)
                ->setPrice($faker->numberBetween($min = 100, $max = 900))
-               ->setDescription($faker->text($maxNbChars = 200))
+               ->setDescription($faker->text($maxNbChars = 400))
                ->setStock($faker->numberBetween($min = 0, $max = 9000)) 
                ->setOrigin($faker->country)
                ->setCategory($category1)
@@ -76,6 +80,26 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
                ->setStock($faker->numberBetween($min = 0, $max = 200)) 
                ->setOrigin($faker->country)
                ->setCategory($category2)
+               ->setCreated(new \DateTime());
+            $manager->persist($pd);
+            $number = $faker->numberBetween($min = 2, $max = 5);
+            for($i = 0 ;$i < $number ;$i++){
+                $photo = new Photo();
+                $photo->setName("10083754155f8ded5d910e67.23748912.jpg")
+                      ->setProduct($pd);
+                $manager->persist($photo);
+            }
+        }
+
+        $clothes = ["warcarft","diablo","starcarft","country-strik","Silent Hill"];
+        foreach($clothes as $one){
+            $pd = new Product();
+            $pd->setName($one)
+               ->setPrice($faker->numberBetween($min = 10, $max = 200))
+               ->setDescription($faker->text($maxNbChars = 200))
+               ->setStock($faker->numberBetween($min = 0, $max = 200)) 
+               ->setOrigin($faker->country)
+               ->setCategory($category3)
                ->setCreated(new \DateTime());
             $manager->persist($pd);
             $number = $faker->numberBetween($min = 2, $max = 5);

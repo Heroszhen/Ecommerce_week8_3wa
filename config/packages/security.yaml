@@ -26,6 +26,7 @@ security:
             logout:
                 path: app_connection_logout
                 target: homepage
+                invalidate_session: false
 
             pattern: ^/
 

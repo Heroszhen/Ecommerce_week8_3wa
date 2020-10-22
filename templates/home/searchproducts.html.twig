@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div id="searchproducts">
+    <div>
+        {% include 'common/nav1.html.twig' %}
+    </div>
+
+    <div class="undernav mb-2"> 
+        <div class="pub1 d-none d-md-block">
+            <img src="{{ asset('photo/ymfr.jpg') }}"  alt="...">
+        </div>
+        <div class="content">
+            <div class="container-fluid">
+            {% for product in allproducts %}
+                <div class="oneproduct row  mb-4 border-bottom pb-1">
+                    <div class="col-md-3">
+                        <img src="{{ asset('photo/product/' ~ product.photos[0].name) }}"  alt="...">
+                    </div>
+                    <div class="col-md-5">
+                        <h5>{{ product.name }}</h5>
+                        <div class="mt-2 text-secondary">{{ product.description|slice(0, 100) }}</div>
+                    </div>
+                    <div class="col-md-4">
+                        <h3 class="text-danger mb-3">{{ product.price }} €</h3>
+                        <div class="mb-2">{{ product.category.name }} </div>
+                        <div><a href="{{ path('oneproductpage',{'id':product.id}) }}" class="btn btn-outline-info btn-sm">Détails</a></div>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+        <div class="pub2 d-none d-md-block">
+            <img src="{{ asset('photo/alexpub.jpg') }}"  alt="...">
+        </div>
+    </div> 
+
+    <div>
+        {% include 'common/footer.html.twig' %}
+    </div>
+</div>
+{% endblock %}

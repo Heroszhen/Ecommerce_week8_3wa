@@ -51,6 +51,25 @@
                             </div>
                         {% endfor %}
                     </div>
+                    {% if app.user %}
+                    <div class="mt-4 productid" data-id="{{ product.id }}">
+                        <h3 class="mb-2">COMMENTAIRES</h3>
+                        {{ form_start(form) }}
+                        {{ form_rest(form) }}
+                        <button type="submit" class="btn btn-primary btn-block">Envoyer</button>
+                        {{ form_end(form) }}
+                    </div>
+                    {% endif %}
+                    <div id="allcomments" class="mt-5">
+                    {% for one in product.comments|reverse %}
+                        <div class="onecomments mb-3">
+                            <div>{{one.message}}</div>
+                            <div class="text-secondary">
+                                {{ one.user.firstname }} .{{ one.created|date("m/d/Y h:i:s") }}
+                            </div>
+                        </div>
+                    {% endfor %}
+                    </div>
                 </div>
             </div>
         </div>

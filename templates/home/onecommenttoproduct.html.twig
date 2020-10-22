@@ -1,0 +1,6 @@
+<div class="onecomments mb-3">
+    <div>{{comment.message}}</div>
+    <div class="text-secondary">
+        {{ comment.user.firstname }} .{{ comment.created|date("m/d/Y h:i:s") }}
+    </div>
+</div>

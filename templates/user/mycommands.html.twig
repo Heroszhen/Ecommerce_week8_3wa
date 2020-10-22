@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<div id="commands" class="espacep">
+    <div class="espacenav d-none">
+        {% include 'common/espacenav.html.twig' %}
+    </div>
+    <div class="espacenav2">
+        {% include 'common/espacenav2.html.twig' %}
+    </div>
+    <div class="espacecontent">
+        <h2 class="text-center mb-3">Mes Commandes</h2>
+        <div class="bloc">
+            <div class="container">
+                <div class="row allmycommands">
+                {% for command in commands %}
+                    <div class="col-md-6 mb-1">
+                        <div class="onecommand">
+                            <div class="title displayfifty pointer mb-2 p-1 border border-primary rounded">
+                                <div class="fifty ">
+                                    {{ command.created|date("m/d/Y") }}
+                                </div>
+                                <div class="fifty text-right">
+                                    {{ command.product.name|capitalize }}
+                                </div>  
+                            </div>
+                            <div class="content d-none p-2 border rounded">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <img src="{{ asset('photo/product/' ~ command.product.photos[0].name) }}"  alt="...">
+                                    </div>
+                                    <div class="col-6">
+                                        <h5>{{ command.product.name }}</h5>
+                                        <div class="text-info mb-2">{{ command.product.category.name }}</div>
+                                        <div class="text-secondary">{{ command.product.description|slice(0,50) }}</div>
+                                        <div class="mt-2 mb-2"> Quantity : {{ command.quantity }}</div>
+                                        <h3 class="text-danger mt-2 mb-2">Total : {{ command.price * command.quantity }} €</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>   
+</div>
+{% endblock %}

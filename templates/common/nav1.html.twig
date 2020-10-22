@@ -5,7 +5,7 @@
                 zhen-ecommerce
             </div>
             <div class="col-md-6">
-                <form method="post" action="">
+                <form method="post" action="{{ path('searproductspage') }}">
                     <div>
                         <input type="text" class="form-control" id="search" name="search" placeholder="Qu'est qui vous ferait plaisir ?">
                     </div>
@@ -54,13 +54,13 @@
                 <li class="nav-item {% if app.session.get("nav")=='home' %}active{% endif %}">
                     <a class="nav-link" href="{{ path('homepage') }}">Mes Course</a>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown  {% if app.session.get("nav")=='category' %}active{% endif %}">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Catégories
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         {% for one in allcategories.getAll %}
-                            <a class="dropdown-item" href="#" style="color:black !important">{{ one.name }}</a>
+                            <a class="dropdown-item" href="{{ path('searproductspage2',{'id':one.id}) }}" style="color:black !important">{{ one.name }}</a>
                         {% endfor %}
                     </div>
                 </li>

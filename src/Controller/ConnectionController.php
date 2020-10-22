@@ -2,15 +2,16 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
-
-use Symfony\Component\HttpFoundation\Request;
 use App\Entity\User;
 use App\Form\UserType;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+
+use App\Service\CarteService;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class ConnectionController extends AbstractController
 {
@@ -61,7 +62,7 @@ class ConnectionController extends AbstractController
     /**
      * @Route("/login", name="connexionpage")
      */
-    public function login(Request $request,AuthenticationUtils $authenticationUtils){
+    public function login(Request $request,AuthenticationUtils $authenticationUtils,CarteService $cs){
         if($this->getUser())return $this->redirectToRoute('homepage');
         $session = $request->getSession();
         $session->set("nav","register");
@@ -69,11 +70,14 @@ class ConnectionController extends AbstractController
         $lastUsername = $authenticationUtils->getLastUsername();
         if (!empty($error)) {
             $this->addFlash('error', 'Identifiants incorrects');
+        }else{
+            
         }
         return $this->render('connection/login.html.twig',[
             'last_username' => $lastUsername
         ]);
-	}
+    }
+    
 
     /**
      * @Route("/logout")

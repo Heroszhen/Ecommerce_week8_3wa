@@ -8,6 +8,7 @@
     <div class="container undernav"> 
         <div class="row">
             {% for product in allproducts %}
+                {% if product.stock > 0 %}
                 <div class="col-md-6 col-lg-3 mb-2">
                     <a class="oneproduct" href="{{ path('oneproductpage',{'id':product.id}) }}" style="color:black !important">
                         <div class="image">
@@ -24,6 +25,7 @@
                         </div>
                     </a>
                 </div>
+                {% endif %}
             {% endfor %}
         </div>
     </div>

@@ -9,6 +9,7 @@ use App\Entity\Photo;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\ProductType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Knp\Component\Pager\PaginatorInterface; 
 use Symfony\Component\HttpFoundation\Response;
 
@@ -18,7 +19,9 @@ use Symfony\Component\HttpFoundation\Response;
  * @package App\Controller\Admin
  *
  * @Route("/admin/product")
- * @Security("is_granted('ROLE_ADMIN')")
+ * @Security("is_granted('ROLE_ADMIN')", 
+ * statusCode=403, 
+ * message="Vous n'avez pas les droits suffisant pour accéder à cette interface !")
  */
 class ProductController extends AbstractController
 {
@@ -133,10 +136,19 @@ class ProductController extends AbstractController
 
 
     /**
-     * @Route("/delete-produit", name="admindeleteproduct")
+     * @Route("/deleteproduit/{id}", name="admindeleteproduct")
      */
-    public function deleteOneProduct(){
+    public function deleteOneProduct(Product $product,Request $request){
         $em = $this->getDoctrine()->getManager();
+        foreach($product->getPhotos() as $photo){
+            if($photo->getName() != "10083754155f8ded5d910e67.23748912.jpg"){
+                if(file_exists($this->getParameter('upload_dir')."product/".$photo->getName()))unlink($this->getParameter('upload_dir')."product/".$photo->getName());
+            }
+            $em->remove($photo);
+            $em->flush();
+        }
+        $em->remove($product);
+        $em->flush();
         return $this->redirectToRoute('adminallproducts');
     }
 

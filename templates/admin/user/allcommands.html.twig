@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<div id="adminallcommands" class="espacep">
+    <div class="espacenav d-none">
+        {% include 'common/espacenav.html.twig' %}
+    </div>
+    <div class="espacenav2">
+        {% include 'common/espacenav2.html.twig' %}
+    </div>
+    <div class="espacecontent">
+        <h2 class="text-center mb-3">Toute les Commandes</h2>
+        <div class="bloc">
+            <div class="container">
+                <table class="table table-sm">
+                <thead>
+                    <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Client</th>
+                    <th scope="col">Produit</th>
+                    <th scope="col">Total(€)</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for command in allcommands %}
+                    <tr>
+                        <td>{{ command.id }}</td>
+                        <td>{{ command.user.lastname }}</td>
+                        <td>{{ command.product.name }}</td>
+                        <td>{{ command.quantity * command.price }}</td>
+                        <td>{{ command.created|date('d/m/Y') }}</td>
+                        <td>
+                            <button type="button" class="btn btn-outline-info showonecommand" data-id="{{ command.id }}">Détails</button>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header" style="padding:0 !important"></div>
+            <div class="modal-body"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+            </div>
+        </div>
+    </div>   
+</div>
+{% endblock %}

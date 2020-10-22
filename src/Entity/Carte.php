@@ -25,12 +25,18 @@ class Carte
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $quantity;
+    private $quantity = 0;
 
     /**
      * @ORM\ManyToOne(targetEntity=Product::class, inversedBy="cartes")
      */
     private $product;
+
+    /**
+     * 0 : non bought, 1: bought
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $status = 0;
 
     public function getId(): ?int
     {
@@ -69,6 +75,18 @@ class Carte
     public function setProduct(?Product $product): self
     {
         $this->product = $product;
+
+        return $this;
+    }
+
+    public function getStatus(): ?int
+    {
+        return $this->status;
+    }
+
+    public function setStatus(?int $status): self
+    {
+        $this->status = $status;
 
         return $this;
     }
