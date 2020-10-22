@@ -25,11 +25,13 @@ $("#carte input.modifyquantity").change(function(e){
         value = 1;
         $(this).val(value);
     }
+    let _this = $(this);
     $("#loader").removeClass("d-none");
     $.get(
         "/panier/updatequantity/"+productid + "_" + value,
         function (response) {
-            $("#carte #total2").html(response);
+            _this.val(response[0]);
+            $("#carte #total2").html(response[1]);
             $("#loader").addClass("d-none");
         }
     );

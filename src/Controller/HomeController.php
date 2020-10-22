@@ -117,7 +117,7 @@ class HomeController extends AbstractController
         $carte = $session->get("carte",[]);
         foreach($carte as $pid=>$quantity){
             $product = $em->find(Product::class,$pid);
-            if($product->getStock() > $quantity){
+            if($product->getStock() >= $quantity){
                 $carteb = $em->getRepository(Carte::class)->findOneBy(["user"=>$this->getUser(),"product"=>$product,"status"=>0]);
                 if(!empty((array)$carteb)){
                     $n = $product->getStock() - $quantity;
@@ -135,11 +135,12 @@ class HomeController extends AbstractController
                         ->setPrice($product->getPrice())
                         ->setcreated(new \DateTime());
                     $em->persist($command);
+                    unset($carte[$pid]);
                 }
             }
         }
         $em->flush();
-        $carte = $session->set("carte",[]);
+        $carte = $session->set("carte",$carte);
         return $this->redirectToRoute('homepage');
     }
 }

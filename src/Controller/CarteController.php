@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Product;
 use Symfony\Component\HttpFoundation\Response;
 use App\Entity\Carte;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Class CarteController
@@ -114,10 +115,15 @@ class CarteController extends AbstractController
             $n = 0;
             $session = $request->getSession();
             $carte = $session->get("carte",[]);
-            $carte[$pid] = $value;
             $product = $em->find(Product::class,$pid);
-            $n += $product->getPrice() * $carte[$pid];
+            if($value > $product->getStock())$carte[$pid] = $product->getStock();
+            else $carte[$pid] = $value;
             $session->set("carte",$carte);
+            foreach($carte as $id=>$quantity){
+                $product = $em->find(Product::class,$id);
+                $n += $carte[$id] * $product->getPrice();
+            }
+
             if($this->getUser() != null){
                 $product = $em->find(Product::class,$pid);
                 $carteb = $em->getRepository(Carte::class)->findOneBy(["user"=>$this->getUser(),"product"=>$product,"status"=>0]);
@@ -125,7 +131,7 @@ class CarteController extends AbstractController
                 $em->persist($carteb);
                 $em->flush();
             }
-            return new Response($n);
+            return new JsonResponse([$carte[$pid],$n]);
         }
 
         return new Response("Error");
