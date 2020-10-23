@@ -1,6 +1,7 @@
 composer require --dev symfony/web-server-bundle
 composer require --dev doctrine/doctrine-fixtures-bundle
 composer require --dev fzaninotto/faker
+composer require --dev phpunit/phpunit
 composer require knplabs/knp-paginator-bundle
 
 email:
