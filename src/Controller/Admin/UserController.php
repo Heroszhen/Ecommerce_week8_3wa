@@ -121,13 +121,13 @@ class UserController extends AbstractController
      */
     public function testEmail(Request $request,EmailService $es)
     {
-        //if ($request->isXmlHttpRequest()){
+        if ($request->isXmlHttpRequest()){
             $es->test();
             return new Response(1);
-        //}
+        }
 
-        //return new Response("Error");
-        
+        return new Response("Error");
+        //return $this->redirectToRoute('adminallusers');
     }
 
     /**
