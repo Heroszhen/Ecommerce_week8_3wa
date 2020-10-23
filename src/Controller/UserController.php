@@ -86,7 +86,7 @@ class UserController extends AbstractController
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
         $session = $request->getSession();
-        $session->set("nav","commands");
+        $session->set("nav","mycomments");
 
         $comments = $user->getComments();
         return $this->render('user/mycomments.html.twig', [

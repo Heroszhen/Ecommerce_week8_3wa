@@ -16,7 +16,7 @@ class EmailService{
     public function test(){
         $email = (new TemplatedEmail())
             ->from(new Address('zhen.3wa@gmail.com', 'Support Client'))
-            ->to(new Address("zhen.3wa@gmail.com", "zhen"))
+            ->to(new Address("herosgogogogo@gmail.com", "zhen"))
             ->subject('test')
             ->htmlTemplate('admin/testemail.html.twig')
             ->context([])
