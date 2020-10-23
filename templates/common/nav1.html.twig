@@ -14,8 +14,8 @@
                     </div>
                 </form>
             </div>
-            <div class="col-6 col-md-2 h5">
-                <li class="nav-item dropdown {% if app.session.get("nav")=='register' %}active{% endif %}" style="position:relative;top:-5px;">
+            <div class="col-6 col-md-2">
+                <li class="nav-item dropdown {% if app.session.get("nav")=='register' %}active{% endif %}" style="position:relative;top:-5px;list-style-type: none;">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Mon compte
                     </a>
@@ -31,16 +31,18 @@
                 </li>
             </div>
             <div class="col-6 col-md-2">
-                <a href="{{ path('cartepage') }}" id="carte" class="h4" style="position:relative;top:15px;">
-                    <i class="fas fa-cart-plus"></i> Panier
-                    {% set n = 0 %}
-                    {% for one in app.session.get('carte') %}
-                        {% set n = n + 1 %}
-                    {% endfor %}
-                    <div id="total" class="text-danger font-weight-bold" style="position:relative;top:-35px;left:10px;">
-                        {% if n != 0 %}{{ n }}{% endif %}
-                    </div>
-                </a>
+                <div class="display:flex;align-items:center">
+                    <a href="{{ path('cartepage') }}" id="carte" style="position:relative;font-size:18px;font-size:25px;">
+                        {% set n = 0 %}
+                        {% for one in app.session.get('carte') %}
+                            {% set n = n + 1 %}
+                        {% endfor %}
+                        <span id="total" class="text-danger font-weight-bold" style="position:absolute;z-index:10;position:relative;left:25px;top:-7px;">
+                            {% if n != 0 %}{{ n }}{% endif %}
+                        </span>
+                        <i class="fas fa-cart-plus"></i> Panier
+                    </a>
+                </div>
             </div>
         </div>
     </div>
