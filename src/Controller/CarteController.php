@@ -67,7 +67,7 @@ class CarteController extends AbstractController
         $session->set("nav","");
         $carte = $session->get("carte",[]);
         $courant = [];
-        dump($carte);
+        //dump($carte);
         foreach($carte as $id=>$total){
             $product = $em->find(Product::class,$id);
             $oneproduct = [];
