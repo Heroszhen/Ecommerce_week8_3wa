@@ -126,7 +126,7 @@ class UserController extends AbstractController
             return new Response(1);
         //}
 
-        return new Response("Error");
+        //return new Response("Error");
         
     }
 
