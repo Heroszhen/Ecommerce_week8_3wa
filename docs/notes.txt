@@ -16,3 +16,12 @@ php bin/console make:fixtures ProductFixtures
 php bin/console doctrine:fixtures:load
 
 
+
+
+
+php bin/console make:entity test
+test : id, title, photo,
+supprimer ": ?string" de getPhoto(): ?string
+supprimer "?string " de setPhoto(?string $photo): self
+
+php bin/console make:form testphoto test
